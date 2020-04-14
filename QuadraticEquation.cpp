@@ -229,15 +229,15 @@ void ac_Formula(double a, double c, double* x1, double* x2)
     printf("\tEquation type:\n\t");
     printf("Ax^2 + C\n\n");
 
-    if(c / a >= 0)
+    if(-c / a >= 0)
     {
-        *x1 = sqrt(c / a);
-        *x2 = -sqrt(c / a);
+        *x1 = sqrt(-c / a);
+        *x2 = -sqrt(-c / a);
 
     }
     else
     {
-        printf("\tC / A < 0. There're no roots.\n");
+        printf("\t -C / A < 0. There're no roots.\n");
         return;
     }
 
@@ -263,3 +263,4 @@ double discriminant(double a, double b, double c)
 {
     return b * b - 4 * a * c;
 }
+
