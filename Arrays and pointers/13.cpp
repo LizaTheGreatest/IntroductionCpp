@@ -13,7 +13,7 @@ int main()
     int n;
     int min, max, sum;
 
-    printf("Enter matrix size");
+    printf("Enter matrix size: ");
     scanf("%d", &n);
 
     addMatrix(&matrix, n, n);
