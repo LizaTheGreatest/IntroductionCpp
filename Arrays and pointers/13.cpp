@@ -6,14 +6,12 @@
 void addMatrix(int***, int, int);
 void fillMatrix(int***, int, int);
 void viewMatrix(int**, int, int);
-int sumOfElements(int**, int);
-int minElement(int**, int);
-int maxElement(int**, int);
-
+void findMinMaxSum(int**, int, int*, int*, int*);
 int main()
 {
     int** matrix;
     int n;
+    int min, max, sum;
 
     printf("Enter matrix size");
     scanf("%d", &n);
@@ -21,9 +19,9 @@ int main()
     addMatrix(&matrix, n, n);
     fillMatrix(&matrix, n, n);
     viewMatrix(matrix, n, n);
-    int sum = sumOfElements(matrix, n);
-    int min = minElement(matrix, n);
-    int max = maxElement(matrix, n);
+
+    findMinMaxSum(matrix, n, &min, &max, &sum);
+
     printf("\nSum is %d\nMinimum is %d\nMaximum is %d\n", sum, min, max);
 
     return 0;
@@ -61,46 +59,26 @@ void viewMatrix(int** matrix, int n, int m)
      }
  }
 
-int sumOfElements(int** matrix, int n)
+
+void findMinMaxSum(int** matrix, int n, int* min, int* max, int* sum)
 {
-    int sum = 0;
+    *min = matrix[1][0];
+    *max = matrix[0][1];
+    *sum = 0;
     for(int i = 0; i < n; ++i)
-        sum += matrix[i][i];
-    return sum;
-
-}
-
-int minElement(int** matrix, int n)
-{
-    int min = matrix[1][0];
-    for(int i = 0; i < n; ++i)
-
         for(int j = 0; j < n; ++j)
         {
             if(j < i)
             {
-               if(matrix[i][j] < min)
-                   min = matrix[i][j];
+                if(matrix[i][j] < *min)
+                    *min = matrix[i][j];
             }
-        }
-    return  min;
-
-
-}
-
-int maxElement(int** matrix, int n)
-{
-    int max = matrix[0][1];
-    for(int i = 0; i < n; ++i)
-
-        for(int j = 0; j < n; ++j)
-        {
-            if(j > i)
+            else if(j > i)
             {
-               if(matrix[i][j] > max)
-                   max = matrix[i][j];
+                if(matrix[i][j] > *max)
+                    *max = matrix[i][j];
             }
+            else *sum += matrix[i][j];
         }
-    return max;
-
 }
+
