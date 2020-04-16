@@ -22,7 +22,7 @@ int main()
     while(true)
     {
         ask(left_border, right_border, &user_answer);
-        if(user_answer >= number)
+        if(user_answer >= number && user_answer < right_border)
         {
             if(user_answer == number)
             {
@@ -33,7 +33,7 @@ int main()
             right_border = user_answer;
 
         }
-        else
+        else if(user_answer < number && user_answer > left_border)
         {
             left_border = user_answer;
         }
