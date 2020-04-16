@@ -3,6 +3,12 @@
 #include <cstdlib>
 #include <ctime>
 
+#ifdef _WIN32
+    #define CLEAR "cls"
+#else
+    #define CLEAR "clear"
+#endif
+
 //--------------------------------#16---------------------------------
 void multiTable(int[10][10]);
 void generateNumbers(int*, int*);
@@ -25,12 +31,14 @@ int main()
     generateNumbers(&a, &b);
 
     while (attempts) {
+
         ask(a, b, &answer);
         if(answer == a * b)
         {
            printf("Congratulations!\n");
            break;
         }
+        system(CLEAR);
         printf("That's not correct. Try again\n");
         attempts--;
 
@@ -40,12 +48,18 @@ int main()
         multiTable(table);
         while (true)
         {
+
             ask(a, b, &answer);
+
             if(answer == a * b)
             {
                printf("Congratulations!\n");
                break;
             }
+            system(CLEAR);
+            multiTable(table);
+            printf("No. Please, try again\n");
+
         }
     }
 
@@ -77,4 +91,6 @@ void ask(int a, int b, int* answer)
 {
     printf("%d * %d = ", a, b);
     scanf("%d", answer);
+
 }
+
