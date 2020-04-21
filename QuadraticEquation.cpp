@@ -26,13 +26,13 @@ int main()
     double x1, x2;
     bool answer = true;
 
-    printf("Enter coefficients: ");
-    printf("Ener A: ");
+    printf("Please, enter coefficients\n ");
+    printf("Enter A: ");
     a = safeReadInt("Please, enter number and try again\n");
     while(!a) invalid_A(&a);
-    printf("Ener B: ");
+    printf("Enter B: ");
     b = safeReadInt("Please, enter number and try again\n");
-    printf("Ener C: ");
+    printf("Enter C: ");
     c = safeReadInt("Please, enter number and try again\n");
 
 
@@ -42,13 +42,13 @@ int main()
 
     while(!answer)
     {
-        printf("Enter coefficients: ");
-        printf("Ener A: ");
+        printf("Enter coefficients\n ");
+        printf("Enter A: ");
         a = safeReadInt("Please, enter number and try again\n");
         while(!a) invalid_A(&a);
-        printf("Ener B: ");
+        printf("Enter B: ");
         b = safeReadInt("Please, enter number and try again\n");
-        printf("Ener C: ");
+        printf("Enter C: ");
         c = safeReadInt("Please, enter number and try again\n");
 
 
@@ -160,8 +160,8 @@ void flush_stdin()
 void invalid_A(double* a)
 {
     if(*a) return;
-    printf("coefficient a can't be zero. It's not square equation. Please, try again");
-    printf("Enter a:");
+    printf("Coefficient 'a' can't be zero. It's not square equation. Please, try again.\n");
+    printf("Enter a: ");
     *a = safeReadInt("Please, enter number\n");
 
 }
