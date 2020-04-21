@@ -7,8 +7,7 @@ enum FormulaType {
     AC_FORMULA,
     A_FORMULA
 };
-
-void oneTerm(double, int&);
+double safeReadInt(const char*);
 void printEquation(double, double, double);
 bool ask();
 void flush_stdin();
@@ -21,7 +20,6 @@ void ac_Formula(double, double, double*, double*);
 void a_Formula(double*, double*);
 double discriminant(double, double, double);
 
-
 int main()
 {
     double a, b, c;
@@ -29,9 +27,14 @@ int main()
     bool answer = true;
 
     printf("Enter coefficients: ");
-    scanf("%lf%lf%lf", &a, &b, &c);
-
+    printf("Ener A: ");
+    a = safeReadInt("Please, enter number and try again\n");
     while(!a) invalid_A(&a);
+    printf("Ener B: ");
+    b = safeReadInt("Please, enter number and try again\n");
+    printf("Ener C: ");
+    c = safeReadInt("Please, enter number and try again\n");
+
 
     printEquation(a, b, c);
     answer = ask();
@@ -40,8 +43,16 @@ int main()
     while(!answer)
     {
         printf("Enter coefficients: ");
-        scanf("%lf%lf%lf", &a, &b, &c);
+        printf("Ener A: ");
+        a = safeReadInt("Please, enter number and try again\n");
         while(!a) invalid_A(&a);
+        printf("Ener B: ");
+        b = safeReadInt("Please, enter number and try again\n");
+        printf("Ener C: ");
+        c = safeReadInt("Please, enter number and try again\n");
+
+
+
         printEquation(a, b, c);
         answer = ask();
     }
@@ -127,9 +138,16 @@ void printEquation(double a, double b, double c)
 
 bool ask()
 {
-    printf("Is it correct? Press 'y' for yes, 'n' for no: ");
-    flush_stdin();
-    char ans = getc(stdin);
+    char ans = 0;
+    do
+    {
+
+        printf("Is it correct? Press 'y' for yes, 'n' for no: ");
+        ans = getc(stdin);
+        flush_stdin();
+    }
+    while(ans != 'y' && ans != 'n');
+
     return ans == 'y';
 }
 
@@ -144,7 +162,7 @@ void invalid_A(double* a)
     if(*a) return;
     printf("coefficient a can't be zero. It's not square equation. Please, try again");
     printf("Enter a:");
-    scanf("%lf", a);
+    *a = safeReadInt("Please, enter number\n");
 
 }
 
@@ -263,4 +281,28 @@ double discriminant(double a, double b, double c)
 {
     return b * b - 4 * a * c;
 }
+
+double safeReadInt(const char* text = "Error. Please, enter only numbers and try again\n")
+{
+
+    bool ok = false;
+    int result;
+
+    do
+    {
+
+        ok = scanf("%d", &result) == 1;
+        flush_stdin();
+        if(!ok)
+        {
+            printf("%s", text);
+        }
+
+    }
+    while (!ok);
+    return result;
+
+}
+
+
 
