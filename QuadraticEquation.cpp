@@ -66,7 +66,7 @@ int main()
 
 void oneTerm(double k, int &f)
 {
-    const char* a[] = {"x^2","x",""};
+    const char* a[] = {"x^2","x"};
     if(k > 1)
     {
         switch (f)
@@ -92,7 +92,7 @@ void oneTerm(double k, int &f)
             case 2: printf("%+3.2lf", k);
             break;
         }
-        return;
+
     }
     else if(k == -1)
     {
@@ -117,7 +117,7 @@ void oneTerm(double k, int &f)
             case 2: printf("%+3.2lf", k);
                     break;
         }
-        return;
+
     }
     if(!k)
         f++;
