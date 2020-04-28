@@ -49,11 +49,13 @@ int maxElement(int* array, int size, int left_border)
 void viewMatrix(int** matrix, const int rows, const int columns)
 {
     for(int i = 0; i < rows; ++i)
+    {
         for(int j = 0; j < columns; ++j)
         {
             printf("[%d][%d] = %d; ", i, j, matrix[i][j]);
         }
-    printf("\n\n");
+        printf("\n\n");
+    }
 }
 
 void viewMatrix(int* matrix, const int size)
@@ -91,10 +93,12 @@ void fillMatrix(int** matrix, int rows, int columns)
 {
     for(int i = 0; i < rows; ++i)
     {
-        printf("Enter %d numbers: ", columns);
+        printf("\tRow #%d:\n", i);
         for(int j = 0; j < columns; ++j)
-
+        {
+            printf("[%d][%d] = ", i, j);
             matrix[i][j] = safeReadInt();
+        }
 
     }
 }
