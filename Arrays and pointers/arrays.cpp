@@ -82,7 +82,8 @@ void fillMatrix(int* matrix, int size)
     for(int i = 0; i < size; ++i)
     {
         printf("[%d] = ", i);
-        scanf("%d", &matrix[i]);
+
+        matrix[i] = safeReadInt();
     }
 }
 
@@ -92,9 +93,37 @@ void fillMatrix(int** matrix, int rows, int columns)
     {
         printf("Enter %d numbers: ", columns);
         for(int j = 0; j < columns; ++j)
-            scanf("%d", &matrix[i][j]);
+
+            matrix[i][j] = safeReadInt();
 
     }
 }
 
+
+int safeReadInt(const char* text)
+{
+
+    bool ok = false;
+    int result;
+
+    do
+    {
+
+        ok = scanf("%d", &result) == 1;
+        flush_stdin();
+        if(!ok)
+        {
+            printf("%s", text);
+        }
+
+    }
+    while (!ok);
+    return result;
+
+}
+void flush_stdin()
+{
+    char c;
+    while ((c = getc(stdin)) != '\n' && c != EOF);
+}
 

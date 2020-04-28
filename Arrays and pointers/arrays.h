@@ -43,4 +43,9 @@ void fillMatrix(int**, int rows, int columns);
 
 void createMatrix(int** matrix, int size);
 void createMatrix(int*** matrix, int rows, int columns);
+
+int safeReadInt(const char* text = "Please, enter number: ");
+void flush_stdin();
+
 #endif // ARRAYS_H
+
