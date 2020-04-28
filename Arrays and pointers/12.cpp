@@ -11,7 +11,7 @@ int main()
     int* matrix;
 
     printf("Enter the size of array: ");
-    scanf("%d", &size);
+    size = safeReadInt();
 
     createMatrix(&matrix, size);
 
