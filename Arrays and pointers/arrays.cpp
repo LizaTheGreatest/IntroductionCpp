@@ -53,14 +53,14 @@ void viewMatrix(int** matrix, const int rows, const int columns)
         {
             printf("[%d][%d] = %d; ", i, j, matrix[i][j]);
         }
-    printf("\n");
+    printf("\n\n");
 }
 
 void viewMatrix(int* matrix, const int size)
 {
     for(int i = 0; i < size; ++i)
         printf("[%d] = %d; ", i, matrix[i]);
-    printf("\n");
+    printf("\n\n");
 }
 
 void createMatrix(int** matrix, int size)
@@ -77,5 +77,24 @@ void createMatrix(int*** matrix, int rows, int columns)
 
 }
 
+void fillMatrix(int* matrix, int size)
+{
+    for(int i = 0; i < size; ++i)
+    {
+        printf("[%d] = ", i);
+        scanf("%d", &matrix[i]);
+    }
+}
+
+void fillMatrix(int** matrix, int rows, int columns)
+{
+    for(int i = 0; i < rows; ++i)
+    {
+        printf("Enter %d numbers: ", columns);
+        for(int j = 0; j < columns; ++j)
+            scanf("%d", &matrix[i][j]);
+
+    }
+}
 
 
