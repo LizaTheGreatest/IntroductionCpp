@@ -1,88 +1,67 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "arrays.h"
 
 
 //--------------------------------#15---------------------------------
-void addMatrix(int***, int, int);
-void fillMatrix(int***, int, int);
-void viewMatrix(int**, int, int);
-void multiplication(int***, int**, int**, int, int, int);
+void multiplication(int**, int**, int**, int, int, int);
 
 
 
 int main()
 {
-      int n1, m1;
-      int n2, m2;
+      int row1, col1;
+      int row2, col2;
       int** matrix_1;
       int** matrix_2;
       int** matrix_3;
-      printf("Enter number of rows and columns: ");
-      scanf("%d%d", &n1, &m1);
-      n2 = m1;
+      printf("Enter number of rows for first matrix: ");
+      row1 = safeReadInt();
+      printf("Enter number of columns for first matrix: ");
+      col1 = safeReadInt();
+      row2 = col1;
       printf("Enter number of columns for second matrix: ");
-      scanf("%d", &m2);
+      col2 = safeReadInt();
 
-      addMatrix(&matrix_1, n1, m1);
-      fillMatrix(&matrix_1, n1, m1);
-      viewMatrix(matrix_1, n1, m1);
 
-      addMatrix(&matrix_2, n2, m2);
-      fillMatrix(&matrix_2, n2, m2);
-      viewMatrix(matrix_2, n2, m2);
+      printf("first matrix size: %d x %d\n", row1, col1);
+      printf("Second matrix size: %d x %d\n", row2, col2);
+      printf("Multiplicated matrix size: %d x %d\n", row1, col2);
 
-      addMatrix(&matrix_3, n1, m2);
-      multiplication(&matrix_3, matrix_1, matrix_2, n1, m1, m2);
-      viewMatrix(matrix_3, n1, m2);
+      createMatrix(&matrix_1, row1, col1);
+      fillMatrix(matrix_1, row1, col1);
+      printf("\tFirst matrix\n\n");
+      viewMatrix(matrix_1, row1, col1);
+
+      createMatrix(&matrix_2, row2, col2);
+      fillMatrix(matrix_2, row2, col2);
+      printf("\tSecond matrix\n\n");
+      viewMatrix(matrix_2, row2, col2);
+
+      createMatrix(&matrix_3, row1, col2);
+      multiplication(matrix_3, matrix_1, matrix_2, row1, col1, col2);
+      printf("\tMiltiplicated matrix\n\n");
+      viewMatrix(matrix_3, row1, col2);
 
       return 0;
 
 }
 
-void addMatrix(int*** matrix, int n, int m)
+
+
+void multiplication(int** matrix_3, int** matrix_1, int** matrix_2, int row1, int col1, int col2)
 {
-
-    *matrix = (int**) malloc(n * sizeof (int*));
-    for(int i = 0; i < n; ++i)
-        (*matrix)[i] = (int*) malloc(m * sizeof (int));
-
-}
-
-
-void fillMatrix(int*** matrix, int n, int m)
-{
-    for(int i = 0; i < n; ++i)
+    for (int i = 0; i < row1; ++i)
     {
-        printf("Enter %d elements: ", m);
-        for(int j = 0; j < m; ++j)
-            scanf("%d", &(*matrix)[i][j]);
-    }
-}
-
-
-void viewMatrix(int** matrix, int n, int m)
- {
-    printf("\n\tMATRIX %d x %d\n\n", n, m);
-     for(int i = 0; i < n; ++i)
-     {
-         for(int j = 0; j < m; ++j)
-             printf("%d\t", matrix[i][j]);
-         printf("\n\n");
-     }
- }
-
-void multiplication(int*** matrix_3, int** matrix_1, int** matrix_2, int n1, int m1, int m2)
-{
-    for (int i = 0; i < n1; ++i)
-    {
-        for (int j = 0; j < m2; ++j)
+        for (int j = 0; j < col2; ++j)
         {
             int elem = 0;
-            for (int k = 0; k < m1; ++k)
+            for (int k = 0; k < col1; ++k)
                 elem += matrix_1[i][k] * matrix_2[k][j];
-            (*matrix_3)[i][j] = elem;
+            matrix_3[i][j] = elem;
         }
 
     }
 
 }
+
