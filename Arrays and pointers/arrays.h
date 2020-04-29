@@ -31,6 +31,7 @@ void swap(T &element1, T &element2)
 
 void sortAscending(int* array, int size, int left_border = 0);
 void sortDescending(int* array, int size, int left_border = 0);
+void bubbleSort(int* array, int size, int left_border = 0);
 
 int minElement(int* array, int size, int left_border = 0);
 int maxElement(int* array, int size, int left_border = 0);

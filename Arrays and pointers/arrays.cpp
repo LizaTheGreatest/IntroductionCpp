@@ -131,3 +131,19 @@ void flush_stdin()
     while ((c = getc(stdin)) != '\n' && c != EOF);
 }
 
+void bubbleSort(int* array, int size, int left_border)
+{
+    for(int i = 1; i < size; ++i)
+    {
+        for(int j  = left_border; j < size - i; ++j)
+        {
+
+            if(array[j] > array[j + 1])
+            {
+                swap(array[j], array[j + 1]);
+            }
+        }
+    }
+}
+
+
