@@ -7,7 +7,7 @@ enum FormulaType {
     AC_FORMULA,
     A_FORMULA
 };
-double safeReadInt(const char*);
+double safeReadDouble(const char*);
 void printEquation(double, double, double);
 bool ask();
 void flush_stdin();
@@ -28,12 +28,12 @@ int main()
 
     printf("Please, enter coefficients\n ");
     printf("Enter A: ");
-    a = safeReadInt("Please, enter number and try again\n");
+    a = safeReadDouble("Please, enter number and try again\n");
     while(!a) invalid_A(&a);
     printf("Enter B: ");
-    b = safeReadInt("Please, enter number and try again\n");
+    b = safeReadDouble("Please, enter number and try again\n");
     printf("Enter C: ");
-    c = safeReadInt("Please, enter number and try again\n");
+    c = safeReadDouble("Please, enter number and try again\n");
 
 
     printEquation(a, b, c);
@@ -44,12 +44,12 @@ int main()
     {
         printf("Enter coefficients\n ");
         printf("Enter A: ");
-        a = safeReadInt("Please, enter number and try again\n");
+        a = safeReadDouble("Please, enter number and try again\n");
         while(!a) invalid_A(&a);
         printf("Enter B: ");
-        b = safeReadInt("Please, enter number and try again\n");
+        b = safeReadDouble("Please, enter number and try again\n");
         printf("Enter C: ");
-        c = safeReadInt("Please, enter number and try again\n");
+        c = safeReadDouble("Please, enter number and try again\n");
 
 
 
@@ -162,7 +162,7 @@ void invalid_A(double* a)
     if(*a) return;
     printf("Coefficient 'a' can't be zero. It's not square equation. Please, try again.\n");
     printf("Enter a: ");
-    *a = safeReadInt("Please, enter number\n");
+    *a = safeReadDouble("Please, enter number\n");
 
 }
 
@@ -282,16 +282,16 @@ double discriminant(double a, double b, double c)
     return b * b - 4 * a * c;
 }
 
-double safeReadInt(const char* text = "Error. Please, enter only numbers and try again\n")
+double safeReadDouble(const char* text = "Error. Please, enter only numbers and try again\n")
 {
 
     bool ok = false;
-    int result;
+    double result;
 
     do
     {
 
-        ok = scanf("%d", &result) == 1;
+        ok = scanf("%lf", &result) == 1;
         flush_stdin();
         if(!ok)
         {
