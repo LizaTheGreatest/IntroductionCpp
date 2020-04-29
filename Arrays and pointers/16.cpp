@@ -1,76 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "arrays.h"
 
 
 //--------------------------------#16---------------------------------
-void fillMatrix(int**, int, int);
-void viewMatrix(int**, int, int);
 void sum(int*, int);
 
 int main()
 {
-    int n, m;
-    printf("Enter number of rows and columns: ");
-    scanf("%d%d", &n, &m);
-    int** matrix = (int**) malloc(n * sizeof (int*));
-    for(int i = 0; i < n; ++i)
-        matrix[i] = (int*) malloc(m * sizeof (int));
+    int rows, columns;
+    int** matrix;
+    printf("Enter rows number: ");
+    rows = safeReadInt();
+    printf("Enter columns number: ");
+    columns = safeReadInt();
 
-    fillMatrix(matrix, n, m);
-    viewMatrix(matrix, n, m);
+    createMatrix(&matrix, rows, columns);
+    fillMatrix(matrix, rows, columns);
+    viewMatrix(matrix, rows, columns);
 
-    int counter = 0;
-    int* row = (int*) malloc(n * sizeof (int));
 
-    for(int i = 0; i < n; ++i)
+    int* row;
+    createMatrix(&row, rows);
+
+    bool noZero = true;
+    for(int i = 0; i < rows; ++i)
     {
-        for(int j = 0; j < m; ++j)
+        row = matrix[i];
+        for(int j = 0; j < columns; ++j)
         {
-            if(matrix[i][j] == 0)
+            if(!row[j])
             {
-                counter = 0;
+                noZero = false;
                 break;
             }
-            counter++;
+
         }
-        if(counter)
-        {
-            row = matrix[i];
-            sum(row, m);
-        }
+        if(noZero)
+            sum(row, columns);
 
     }
-
-
-
 
     return 0;
 }
 
-void fillMatrix(int** matrix, int n, int m)
-{
-    for(int i = 0; i < n; ++i)
-    {
-        printf("Enter %d elements: ", m);
-        for(int j = 0; j < m; ++j)
-            scanf("%d", &matrix[i][j]);
 
-    }
-}
- void viewMatrix(int** matrix, int n, int m)
- {
-
-     for(int i = 0; i < n; ++i)
-     {
-         for(int j = 0; j < m; ++j)
-             printf("%d\t", matrix[i][j]);
-         printf("\n\n");
-     }
- }
-void sum(int* row, int n)
+void sum(int* row, int rows)
 {
     int sum = 0;
-    for(int i = 0; i < n; ++i)
+    for(int i = 0; i < rows; ++i)
         sum += row[i];
     printf("Sum is %d\n", sum);
 }
+
